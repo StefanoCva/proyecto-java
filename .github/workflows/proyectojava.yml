@@ -1,0 +1,44 @@
+name: Java CI - WAR Build
+
+on:
+  push:
+    branches:
+      - main
+      - developer
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # env:
+    #   # Aquí pones las variables de GitHub Secrets/Variables de entorno
+    #   # Equivalente al Variable Group de Azure DevOps
+    #   APP_ENV: ${{ vars.APP_ENV }}
+    #   DB_USER: ${{ secrets.DB_USER }}
+    #   DB_PASS: ${{ secrets.DB_PASS }}
+
+    steps:
+      # 1. Checkout del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Configurar JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      # 3. Compilar con Maven
+      - name: Build with Maven
+        run: mvn clean package -DskipTests=false
+
+      # 4. Publicar artefacto (WAR) en el pipeline
+      - name: Upload WAR artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: drop
+          path: target/*.war
