@@ -54,7 +54,7 @@
               <rules>
                 <!-- Solo permite JDK 11 o 17 -->
                 <requireJavaVersion>
-                  <version>[11,11], [17,17]</version>
+                  <version>[11,12], [17,18]</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
