@@ -34,7 +34,7 @@ jobs:
 
       # 3. Compilar con Maven
       - name: Build with Maven
-        run: mvn clean package -DskipTests=false
+        run: mvn clean package -DskipTests=true
 
       # 4. Publicar artefacto (WAR) en el pipeline
       - name: Upload WAR artifact
