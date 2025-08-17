@@ -23,11 +23,11 @@ jobs:
     steps:
       # 1. Checkout del repositorio
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Configurar JDK 11
       - name: Set up JDK 11
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'
@@ -38,7 +38,7 @@ jobs:
 
       # 4. Publicar artefacto (WAR) en el pipeline
       - name: Upload WAR artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: drop
           path: target/*.war
