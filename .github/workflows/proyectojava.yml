@@ -34,12 +34,12 @@ jobs:
       # 4. Análisis con SonarQube / SonarCloud
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
-        with:
-          args: >
-            -Dsonar.projectKey=stefanocva
-            -Dsonar.organization=stefanocva
-            -Dsonar.branch.name=${{ github.ref_name }} 
-            -Dsonar.java.binaries=target
+        # with:
+        #   args: >
+        #     -Dsonar.projectKey=stefanocva
+        #     -Dsonar.organization=stefanocva
+        #     -Dsonar.branch.name=${{ github.ref_name }} 
+        #     -Dsonar.java.binaries=target
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
