@@ -41,14 +41,17 @@ jobs:
     #     #     -Dsonar.branch.name=${{ github.ref_name }} 
     #     #     -Dsonar.java.binaries=target
     #     env:
+    # #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   - name: SonarCloud Scan
+    #     uses: SonarSource/sonarcloud-github-action@v2
+    #     with:
+    #       projectBaseDir: .
+    #     env:
     #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: .
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
+             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       # 5. Publicar artefacto (WAR)
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
