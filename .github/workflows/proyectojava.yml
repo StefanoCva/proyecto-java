@@ -1,4 +1,4 @@
-name: Java CI - WAR Build
+name: Java CI - WAR Build + SonarQube
 
 on:
   push:
@@ -13,17 +13,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # env:
-    #   # Aquí pones las variables de GitHub Secrets/Variables de entorno
-    #   # Equivalente al Variable Group de Azure DevOps
-    #   APP_ENV: ${{ vars.APP_ENV }}
-    #   DB_USER: ${{ secrets.DB_USER }}
-    #   DB_PASS: ${{ secrets.DB_PASS }}
-
     steps:
       # 1. Checkout del repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # necesario para análisis correcto de SonarQube
 
       # 2. Configurar JDK 11
       - name: Set up JDK 11
@@ -32,11 +27,22 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      # 3. Compilar con Maven
+      # 3. Compilar con Maven (sin tests para rapidez)
       - name: Build with Maven
-        run: mvn clean package -DskipTests=true
+        run: mvn -B clean package -DskipTests=true
 
-      # 4. Publicar artefacto (WAR) en el pipeline
+      # 4. Análisis con SonarQube / SonarCloud
+      - name: SonarQube Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.projectKey=TU_PROJECT_KEY
+            -Dsonar.organization=TU_ORG
+            -Dsonar.java.binaries=target
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # 5. Publicar artefacto (WAR)
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
         with:
