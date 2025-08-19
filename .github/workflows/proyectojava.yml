@@ -36,8 +36,8 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         with:
           args: >
-            -Dsonar.projectKey=tu_usuario_hola-mibanco
-            -Dsonar.organization=tu_organizacion
+            -Dsonar.projectKey=stefanocva
+            -Dsonar.organization=StefanoCva
             -Dsonar.java.binaries=target
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
