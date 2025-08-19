@@ -40,7 +40,7 @@ jobs:
             -Dsonar.organization=tu_organizacion
             -Dsonar.java.binaries=target
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: 7a247cd3eee786ecd7b1ad855a5b31121484fc27
 
       # 5. Publicar artefacto (WAR)
       - name: Upload WAR artifact
