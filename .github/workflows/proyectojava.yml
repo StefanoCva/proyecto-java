@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # necesario para análisis correcto de SonarQube
+          fetch-depth: 0   # necesario para análisis correcto
 
       # 2. Configurar JDK 11
       - name: Set up JDK 11
@@ -27,17 +27,17 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      # 3. Compilar con Maven (sin tests para rapidez)
+      # 3. Compilar con Maven
       - name: Build with Maven
         run: mvn -B clean package -DskipTests=true
 
       # 4. Análisis con SonarQube / SonarCloud
       - name: SonarQube Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         with:
           args: >
-            -Dsonar.projectKey=TU_PROJECT_KEY
-            -Dsonar.organization=TU_ORG
+            -Dsonar.projectKey=tu_usuario_hola-mibanco
+            -Dsonar.organization=tu_organizacion
             -Dsonar.java.binaries=target
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
