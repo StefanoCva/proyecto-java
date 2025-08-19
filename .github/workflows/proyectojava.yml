@@ -37,7 +37,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=stefanocva
-            -Dsonar.organization=StefanoCva
+            -Dsonar.organization=stefanocva
             -Dsonar.branch.name=${{ github.ref_name }} 
             -Dsonar.java.binaries=target
         env:
