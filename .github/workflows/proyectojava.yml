@@ -33,7 +33,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=StefanoCva_proyecto-java
-            -Dsonar.organization=StefanoCva
+            -Dsonar.organization=stefanocva
             -Dsonar.java.binaries=target
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
