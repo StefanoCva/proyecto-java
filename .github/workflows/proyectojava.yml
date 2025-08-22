@@ -32,8 +32,8 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=miusuario_miproyecto
-            -Dsonar.organization=miusuario
+            -Dsonar.projectKey=StefanoCva_proyecto-java
+            -Dsonar.organization=StefanoCva
             -Dsonar.java.binaries=target
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
