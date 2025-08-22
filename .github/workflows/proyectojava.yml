@@ -8,6 +8,7 @@ on:
   pull_request:
     branches:
       - main
+      - developer
 
 jobs:
   build:
@@ -35,6 +36,7 @@ jobs:
             -Dsonar.projectKey=StefanoCva_proyecto-java
             -Dsonar.organization=stefanocva
             -Dsonar.java.binaries=target
+            -Dsonar.branch.name=${{ github.ref_name }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
